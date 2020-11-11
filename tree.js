@@ -14,6 +14,6 @@ class Tree{
     display(){
       var pos = this.body3.position;
       imageMode(CENTER);
-      image(this.image,pos.x,pos.y,200,200);
+      image(this.image,pos.x,pos.y-230,300,500);
     }
 }

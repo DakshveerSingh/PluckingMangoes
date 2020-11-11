@@ -6,10 +6,10 @@ const Body = Matter.Body;
 var ground,tree;
 var mango1,mango2,mango3,mango4,mango5,mango6;
 var stone;
-var boy;
+var boy,boyImg;
 
-function preload()
-{
+function preload(){
+  boyImg = loadImage("Plucking-mangoes/boy.png");
 	
 }
 
@@ -20,17 +20,15 @@ function setup() {
 	world = engine.world;
 
 	ground = new Ground(width/2,690,width,10);
-	tree = new Tree(600,680);
+	tree = new Tree(600,600);
 	mango1 = new Mango();
 	mango2 = new Mango();
 	mango3 = new Mango();
 	mango4 = new Mango();
 	mango5 = new Mango();
 	mango6 = new Mango();
-	boy = new Boy(100,500,20);
 
-	Engine.run(engine);
-  
+	Engine.run(engine);  
 }
 
 
@@ -38,6 +36,8 @@ function draw() {
   rectMode(CENTER);
   background(225);
   text(mouseX+" , "+ mouseY,100,100);
+
+  image(boyImg,100,640,100,180);
   
   ground.display();
   tree.display();
@@ -47,11 +47,6 @@ function draw() {
   mango4.display();
   mango5.display();
   mango6.display();
-  boy.display();
 
-  drawSprites();
- 
+  drawSprites(); 
 }
-
-
-

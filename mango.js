@@ -1,6 +1,20 @@
-class Mango extends BaseClass{
+class Mango{
     constructor(x,y,radius){
-    super(x,y,50,50);
-    this.image = loadImage("Plucking mangoes/mango.png");
+        var options = {
+            'isStatic' : false,
+            'restitution' : 0.3,
+            'friction' : 0.5,
+            'density' : 1.3
+        }
+    this.body = Bodies.circle(x,y,radius,options);
+    World.add(world,this.body);
+    this.radius = radius;
+    //this.image = loadImage("image.png");
+    }
+
+    display(){
+        var pos = this.body.position;
+        ellipseMode(RADIUS);
+        ellipse(x,y,radius);
     }
 }
