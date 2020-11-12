@@ -2,14 +2,17 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Constraint = Matter.Constraint
 
+var engine,world;
 var ground,tree;
 var mango1,mango2,mango3,mango4,mango5,mango6;
 var stone;
 var boy,boyImg;
+var sling;
 
 function preload(){
-  boyImg = loadImage("Plucking-mangoes/boy.png");
+  boyImg = loadImage("Plucking mangoes/boy.png");
 	
 }
 
@@ -20,13 +23,23 @@ function setup() {
 	world = engine.world;
 
 	ground = new Ground(width/2,690,width,10);
-	tree = new Tree(600,600);
-	mango1 = new Mango();
-	mango2 = new Mango();
-	mango3 = new Mango();
-	mango4 = new Mango();
-	mango5 = new Mango();
-	mango6 = new Mango();
+	tree = new Tree(600,690);
+	mango1 = new Mango(511,425,20);
+  mango2 = new Mango(541,342,20);
+	mango3 = new Mango(641,327,20);
+	mango4 = new Mango(655,407,20);
+	mango5 = new Mango(573,383,20);
+	mango6 = new Mango(563,268,20);
+
+  var options = {
+    bodyA: stone,
+    pointB: {x: 5,y: 5},
+    stiffness: 0.04,
+    length: 10
+  }
+  sling = Constraint.create(options);
+
+  stone = new Stone(40,40,40);
 
 	Engine.run(engine);  
 }
@@ -37,7 +50,7 @@ function draw() {
   background(225);
   text(mouseX+" , "+ mouseY,100,100);
 
-  image(boyImg,100,640,100,180);
+  image(boyImg,100,550,100,180);
   
   ground.display();
   tree.display();
@@ -47,6 +60,13 @@ function draw() {
   mango4.display();
   mango5.display();
   mango6.display();
+}
 
-  drawSprites(); 
+
+function mouseDragged(){
+  Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+}
+
+function mouseReleased(){
+  this.sling.bodyA = null;
 }

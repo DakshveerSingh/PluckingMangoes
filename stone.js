@@ -9,12 +9,12 @@ class Stone{
     this.body = Bodies.circle(x,y,radius,options);
     World.add(world,this.body);
     this.radius = radius;
-    //this.image = loadImage("image.png");
+    this.image = loadImage("Plucking mangoes/stone.png");
     }
 
     display(){
         var pos = this.body.position;
-        ellipseMode(RADIUS);
-        ellipse(x,y,radius);
+        imageMode(CENTER);
+        image(this.image,x,y);
     }
 }
