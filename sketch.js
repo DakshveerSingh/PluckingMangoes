@@ -47,8 +47,6 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(225);
-  fill(0);
-  text(mouseX+" , "+ mouseY,100,100);
 
   image(boyImg,100,550,100,180);
   
@@ -75,14 +73,12 @@ function draw() {
 function mouseDragged(){
   if(gameState !== "launched"){
    Matter.Body.setPosition(stone.body,{x: mouseX,y: mouseY});
-   gameState = "launched";
   }
 }
 
 function mouseReleased(){
-  if(gameState === "launched"){
-    sling.fly();
-  }
+  sling.fly();
+  gameState = "launched";
 }
 
 function detectCollision(lstone,lmango){
