@@ -39,6 +39,7 @@ function setup() {
   World.add(world,mango6);
 
   stone = new Stone(110,500,70);
+  World.add(world,stone);
 
   sling = new SlingShot(stone.body,{x:105, y:504});
 }
@@ -79,6 +80,15 @@ function mouseDragged(){
 function mouseReleased(){
   sling.fly();
   gameState = "launched";
+}
+
+function keyPressed(){
+  if(keyCode === 32){
+      sling.attach(stone.body);
+      Matter.Body.setPosition(stone.body, {x: 110 , y: 500});
+      Matter.Body.setAngle(stone.body,0);
+      gameState = "on sling";
+  }
 }
 
 function detectCollision(lstone,lmango){
